@@ -31,6 +31,9 @@ jobs:
         with:
           submodules: true
 
+      - name: Install dependencies
+        run: ./install-deps.sh
+
       - name: Configure CMake
         run: cmake -B ${{ env.build }}
 
