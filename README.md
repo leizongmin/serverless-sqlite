@@ -12,22 +12,21 @@ This is my first C++ project. I'm studying how to build a serverless database re
 
 - C++ 17 compiler, such as GCC 9, Clang 10
 - Unix-like operating system, such as Linux, FreeBSD, macOS
-- development tools:
-  - clang-format: `apt install clang-format` or `brew install clang-format`
+- Development tools:
+  - **clang-format**: run `apt install clang-format`(Ubuntu) or `brew install clang-format`(macOS) to install it.
 
 ## Development Setup
 
-- initialize git submodule: `git submodule init && git submodule update`
+- Initialize git submodule: `git submodule init && git submodule update`
 - Install `sqlite3` library: `./vcpkg/vcpkg install sqlite3`
 - Install `glog` library: `./vcpkg/vcpkg install glog`
 
 ## Reference
 
-### CEPH SQLITE VFS
+### libcephsqlite
 
+This SQLite VFS may be used for storing and accessing a SQLite database backed by RADOS. This allows you to fully decentralize your database using Ceph’s object store for improved availability, accessibility, and use of storage.
 Link: https://docs.ceph.com/en/latest/rados/api/libcephsqlite/
-
-Tips:
 
 > - `PRAGMA page_size = 65536` - bigger page size
 > - `PRAGMA cache_size = 4096` - cache 4096 pages or 256MB (with 64K page_cache).
@@ -37,10 +36,7 @@ Tips:
 ### sqlite-s3vfs
 
 Python virtual filesystem for SQLite to read from and write to S3.
-
 Link: https://github.com/uktrade/sqlite-s3vfs
-
-Tips:
 
 > sqlite-s3vfs stores the SQLite database in **fixed-sized blocks, and each is stored as a separate object** in S3. SQLite stores its data in fixed-size pages, and always **writes exactly a page at a time**. This virtual filesystem **translates page reads and writes to block reads and writes**. In the case of SQLite pages being the **same size** as blocks, which is the case by default, each page write results in exactly one block write.
 >

@@ -102,6 +102,12 @@
     "cerrno": "cpp"
   },
   "cSpell.words": [
-    "slsql"
+    "Ceph",
+    "glog",
+    "libcephsqlite",
+    "RADOS",
+    "slsql",
+    "vcpkg",
+    "Zongmin"
   ]
 }
