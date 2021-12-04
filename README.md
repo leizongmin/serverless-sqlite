@@ -4,18 +4,28 @@ Serverless SQLite database read from and write to Object Storage Service, run on
 
 **NOTES: This repository is still in the early development stage.**
 
+## Goals
+
+- Use Object Storage Service as the underlying storage engine, such as AWS S3, Aliyun OSS, etc.
+- Run on FaaS platform, multiple query instances can share the same database, can be scaled horizontally.
+- Provide query interface via HTTP protocol.
+
 ## Why?
 
 This is my first C++ project. I'm studying how to build a serverless database recently. Just for fun.
 
-## Requirements
+## Development
 
-- C++ 17 compiler, such as GCC 9, Clang 10
-- Unix-like operating system, such as Linux, FreeBSD, macOS
+### Requirements
+
+- C++ 17 compiler, such as GCC 9, Clang 10.
+- Unix-like operating system, such as Linux, FreeBSD, macOS.
 - Development tools:
-  - **clang-format**: run `apt install clang-format`(Ubuntu) or `brew install clang-format`(macOS) to install it.
+  - **clang-format**: used to format the source code. Run the following command to install it:
+    - Ubuntu or Debian: `apt install clang-format`
+    - macOS: `brew install clang-format`
 
-## Development Setup
+### Setup
 
 - Initialize git submodule: `git submodule init && git submodule update`
 - Install `sqlite3` library: `./vcpkg/vcpkg install sqlite3`

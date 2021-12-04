@@ -102,6 +102,7 @@
     "cerrno": "cpp"
   },
   "cSpell.words": [
+    "Aliyun",
     "Ceph",
     "glog",
     "libcephsqlite",
