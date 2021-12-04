@@ -3,8 +3,8 @@
 
 #include "glog/logging.h"
 #include "sqlite3.h"
-#include "utils.hh"
-#include "vfs.hh"
+#include "utils.hpp"
+#include "vfs.hpp"
 
 // dump sqlite exec results
 int dumpExec(void *arg, int argc, char **argv, char **column) {
@@ -21,10 +21,10 @@ int dumpExec(void *arg, int argc, char **argv, char **column) {
 void writeExampleFile(void) {
   char s1[128] = "Hello\0World!";
   char s2[128] = "Just for test!";
-  utils::writeToFile("example.txt", s1, 0, sizeof(s1));
-  utils::writeToFile("example.txt", s2, sizeof(s1), sizeof(s2));
+  sls::utils::writeToFile("example.txt", s1, 0, sizeof(s1));
+  sls::utils::writeToFile("example.txt", s2, sizeof(s1), sizeof(s2));
   char buf[12];
-  utils::readFromFile("example.txt", buf, 0, sizeof(buf));
+  sls::utils::readFromFile("example.txt", buf, 0, sizeof(buf));
   LOG(ERROR) << "Read: " << buf << std::endl;
 }
 
@@ -83,7 +83,7 @@ int testSqliteUnixVfs(const std::string dbUrl, const int flags) {
 
 void testRegisterSlsVfs(void) {
   LOG(ERROR) << "register new vfs" << std::endl;
-  registerSlsVfs();
+  sls::vfs::registerVfs();
 }
 
 int testSlsVfs(const std::string dbUrl, const int flags) {
@@ -139,7 +139,7 @@ int testSlsVfs(const std::string dbUrl, const int flags) {
 }
 
 int main(int argc, char **argv, char **envp) {
-  utils::dumpEnv(envp);
+  sls::utils::dumpEnv(envp);
   google::InitGoogleLogging(argv[0]);
 
   LOG(ERROR) << "CWD: " << std::filesystem::current_path().c_str() << std::endl;

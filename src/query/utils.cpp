@@ -5,8 +5,30 @@
 #include <iostream>
 
 #include "glog/logging.h"
+#include "sqlite3.h"
+#include "vfs.hpp"
 
-namespace utils {
+std::ostream &operator<<(std::ostream &os, sqlite3_vfs *vfs) {
+  if (vfs == nullptr) {
+    return os << "nullptr";
+  } else {
+    return os << "*sqlite3_vfs{zName=" << vfs->zName
+              << ",iVersion=" << vfs->iVersion << ",szOsFile=" << vfs->szOsFile
+              << "}";
+  }
+}
+
+std::ostream &operator<<(std::ostream &os, sls::vfs::slsFile *file) {
+  if (file == nullptr) {
+    return os << "nullptr";
+  } else {
+    return os << "*slsFile{name=" << file->name
+              << ",iVersion=" << file->base.pMethods->iVersion
+              << ", blockSize=" << file->blockSize << "}";
+  }
+}
+
+namespace sls::utils {
 void dumpEnv(char **envp) {
   for (auto i = 0; envp[i]; i++) {
     std::cerr << "dump_env: " << envp[i] << std::endl;
@@ -72,4 +94,4 @@ write:
 
   return m;
 }
-}  // namespace utils
+}  // namespace sls::utils

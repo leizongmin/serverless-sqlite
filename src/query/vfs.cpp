@@ -1,3 +1,5 @@
+#include "vfs.hpp"
+
 #include <sys/file.h>
 
 #include <cassert>
@@ -6,33 +8,9 @@
 
 #include "glog/logging.h"
 #include "sqlite3.h"
-#include "utils.hh"
+#include "utils.hpp"
 
-std::ostream &operator<<(std::ostream &os, sqlite3_vfs *vfs) {
-  if (vfs == nullptr) {
-    return os << "nullptr";
-  } else {
-    return os << "*sqlite3_vfs{zName=" << vfs->zName
-              << ",iVersion=" << vfs->iVersion << ",szOsFile=" << vfs->szOsFile
-              << "}";
-  }
-}
-
-struct slsFile {
-  sqlite3_file base;
-  std::string name;
-  int blockSize;
-};
-
-std::ostream &operator<<(std::ostream &os, slsFile *file) {
-  if (file == nullptr) {
-    return os << "nullptr";
-  } else {
-    return os << "*slsFile{name=" << file->name
-              << ",iVersion=" << file->base.pMethods->iVersion
-              << ", blockSize=" << file->blockSize << "}";
-  }
-}
+namespace sls::vfs {
 
 int slsFileClose(sqlite3_file *file) {
   auto f = (slsFile *)file;
@@ -282,7 +260,7 @@ int slsVfsCurrentTime(sqlite3_vfs *vfs, double *) {
 
 // https://www.sqlite.org/capi3ref.html
 // https://github.com/sqlite/sqlite/blob/master/src/test_demovfs.c
-void registerSlsVfs() {
+void registerVfs() {
   static auto slsVfs = sqlite3_vfs{
       .iVersion = 1,
       .szOsFile = sizeof(slsFile),
@@ -312,3 +290,4 @@ void registerSlsVfs() {
     LOG(FATAL) << "cannot register slsql vfs: " << rc << std::endl;
   }
 }
+}  // namespace sls::vfs
