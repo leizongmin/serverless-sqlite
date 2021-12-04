@@ -5,5 +5,5 @@ set -e
 ./build.sh
 echo "--------------------"
 cd target
-GLOG_logtostderr=1 ./main
+GLOG_logtostderr=1 ./query
 echo "--------------------"

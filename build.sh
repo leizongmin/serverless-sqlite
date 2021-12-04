@@ -21,4 +21,3 @@ cmake -B "$target_dir" -S . \
   -DCMAKE_BUILD_TYPE=Release
 cd "$target_dir"
 make
-ls -alh ./main

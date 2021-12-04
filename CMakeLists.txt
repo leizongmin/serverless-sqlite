@@ -17,14 +17,15 @@ endif ()
 
 project(ServerlessSQLite VERSION 0.1.0)
 
-file(GLOB SRC_FILES src/*.cpp)
-add_executable(main ${SRC_FILES})
-
+# executable: query
+file(GLOB QUERY_SRC_FILES src/query/*.cpp)
+add_executable(query ${QUERY_SRC_FILES})
+# library: sqlite3
 find_package(unofficial-sqlite3 CONFIG REQUIRED)
-target_link_libraries(main PRIVATE unofficial::sqlite3::sqlite3)
-
+target_link_libraries(query PRIVATE unofficial::sqlite3::sqlite3)
+# library: glog
 find_package(glog CONFIG REQUIRED)
-target_link_libraries(main PRIVATE glog::glog)
-
+target_link_libraries(query PRIVATE glog::glog)
+# library: boost
 # find_package(Boost REQUIRED COMPONENTS filesystem)
-# target_link_libraries(main PRIVATE Boost::boost Boost::filesystem)
+# target_link_libraries(query PRIVATE Boost::boost Boost::filesystem)
