@@ -14,7 +14,7 @@ echo "vcpkg dir:   $vcpkg_dir"
 vcpkg="$vcpkg_dir/vcpkg"
 echo "vcpkg exec:  $vcpkg"
 
-find src/ -iname *.h -o -iname *.cpp | xargs clang-format -i
+find src/ -iname *.hpp -o -iname *.cpp | xargs clang-format -style=file -i
 
 cmake -B "$target_dir" -S . \
   "-DCMAKE_TOOLCHAIN_FILE=$vcpkg_dir/scripts/buildsystems/vcpkg.cmake" \
