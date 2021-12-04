@@ -28,8 +28,7 @@ This is my first C++ project. I'm studying how to build a serverless database re
 ### Setup
 
 - Initialize git submodule: `git submodule init && git submodule update`
-- Install `sqlite3` library: `./vcpkg/vcpkg install sqlite3`
-- Install `glog` library: `./vcpkg/vcpkg install glog`
+- Install dependencies: `./install-deps.sh`
 
 ## Reference
 

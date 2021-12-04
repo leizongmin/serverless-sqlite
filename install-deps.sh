@@ -2,4 +2,5 @@
 
 set -e
 
+./vcpkg/bootstrap-vcpkg.sh
 ./vcpkg/vcpkg install sqlite3 glog
