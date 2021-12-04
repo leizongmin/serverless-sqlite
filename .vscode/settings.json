@@ -1,9 +1,6 @@
 {
   "cmake.sourceDirectory": "${workspaceFolder}",
   "cmake.buildDirectory": "${workspaceFolder}/cmake-build-debug",
-  "cmake.configureSettings": {
-    "CMAKE_TOOLCHAIN_FILE": "${workspaceFolder}/vcpkg/scripts/buildsystems/vcpkg.cmake",
-  },
   "cmake.buildBeforeRun": true,
   "cmake.saveBeforeBuild": true,
   "[cpp]": {

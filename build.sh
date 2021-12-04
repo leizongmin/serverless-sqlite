@@ -16,8 +16,6 @@ echo "vcpkg exec:  $vcpkg"
 
 find src/ -iname *.hpp -o -iname *.cpp | xargs clang-format -style=file -i
 
-cmake -B "$target_dir" -S . \
-  "-DCMAKE_TOOLCHAIN_FILE=$vcpkg_dir/scripts/buildsystems/vcpkg.cmake" \
-  -DCMAKE_BUILD_TYPE=Release
+cmake -B "$target_dir" -S . -DCMAKE_BUILD_TYPE=Release
 cd "$target_dir"
 make
