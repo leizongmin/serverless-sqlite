@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/leizongmin/serverless-sqlite/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/leizongmin/serverless-sqlite/actions/workflows/codeql-analysis.yml)
+
 # serverless-sqlite
 
 Serverless SQLite database read from and write to Object Storage Service, run on FaaS platform.
