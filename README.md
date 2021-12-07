@@ -1,4 +1,5 @@
 [![CodeQL](https://github.com/leizongmin/serverless-sqlite/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/leizongmin/serverless-sqlite/actions/workflows/codeql-analysis.yml)
+[![GitHub license](https://img.shields.io/github/license/leizongmin/serverless-sqlite)](https://github.com/leizongmin/serverless-sqlite/blob/main/LICENSE)
 
 # serverless-sqlite
 
@@ -14,7 +15,7 @@ Serverless SQLite database read from and write to Object Storage Service, run on
 
 ## Why?
 
-This is my first C++ project. I'm studying how to build a serverless database recently. Just for fun.
+I'm studying how to build a serverless database recently. I have created this repository to practice my C++ skills, and for fun.
 
 ## Development
 
@@ -52,29 +53,3 @@ Link: https://github.com/uktrade/sqlite-s3vfs
 > sqlite-s3vfs stores the SQLite database in **fixed-sized blocks, and each is stored as a separate object** in S3. SQLite stores its data in fixed-size pages, and always **writes exactly a page at a time**. This virtual filesystem **translates page reads and writes to block reads and writes**. In the case of SQLite pages being the **same size** as blocks, which is the case by default, each page write results in exactly one block write.
 >
 > Separate objects are required since S3 does not support the partial replace of an object; to change even 1 byte, it must be re-uploaded in full.
-
-## License
-
-```text
-MIT License
-
-Copyright (c) 2021 Zongmin Lei <leizongmin@gmail.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
