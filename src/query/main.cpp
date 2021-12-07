@@ -95,7 +95,8 @@ int testSlsVfs(const std::string dbUrl, const int flags) {
     return 1;
   }
 
-  rc = sqlite3_exec(db, "PRAGMA journal_mode = OFF;", dumpExec, nullptr,
+  // turn off journal_mode
+  rc = sqlite3_exec(db, "PRAGMA journal_mode = PERSIST;", dumpExec, nullptr,
                     nullptr);
   if (rc != SQLITE_OK) {
     LOG(ERROR) << "cannot set pragma: " << sqlite3_errmsg(db) << std::endl;
@@ -149,7 +150,7 @@ int main(int argc, char **argv, char **envp) {
 
   // create an example database and demo data
   const std::string dbName = "test.db";
-  const std::string dbUrl = "file:" + dbName + "?cache=private&nolock=1";
+  const std::string dbUrl = "file:" + dbName + "?cache=shared";
   const int flags =
       SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_URI;
   std::filesystem::remove(dbName);
