@@ -3,4 +3,4 @@
 set -e
 
 ./vcpkg/bootstrap-vcpkg.sh
-./vcpkg/vcpkg install sqlite3 glog
+./vcpkg/vcpkg install sqlite3 glog hiredis grpc
