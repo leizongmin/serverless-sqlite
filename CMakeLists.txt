@@ -47,3 +47,10 @@ add_executable(store ${STORE_SRC_FILES})
 target_link_libraries(store PRIVATE glog::glog)
 target_link_libraries(store PRIVATE hiredis::hiredis)
 target_link_libraries(store PRIVATE gRPC::gpr gRPC::upb gRPC::grpc gRPC::grpc++)
+
+# clang-format source files
+add_custom_command(
+        TARGET query store
+        COMMAND find src -iname *.hpp -o -iname *.cpp | xargs clang-format -style=file -i
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        VERBATIM)
