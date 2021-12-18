@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <cstddef>
 
 namespace sls::utils {
 void dumpEnv(char **envp);
