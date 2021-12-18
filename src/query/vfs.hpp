@@ -3,10 +3,10 @@
 #include "sqlite3.h"
 
 namespace sls::vfs {
-struct slsFile {
+struct DatabaseFile {
   sqlite3_file base;
   std::string name;
-  int blockSize;
+  int block_size;
 };
-void registerVfs();
+void register_vfs();
 }  // namespace sls::vfs

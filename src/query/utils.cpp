@@ -20,28 +20,28 @@ std::ostream &operator<<(std::ostream &os, sqlite3_vfs *vfs) {
   }
 }
 
-std::ostream &operator<<(std::ostream &os, sls::vfs::slsFile *file) {
+std::ostream &operator<<(std::ostream &os, sls::vfs::DatabaseFile *file) {
   if (file == nullptr) {
     return os << "nullptr";
   } else {
-    return os << "*slsFile{name=" << file->name
+    return os << "*DatabaseFile{name=" << file->name
               << ",iVersion=" << file->base.pMethods->iVersion
-              << ", blockSize=" << file->blockSize << "}";
+              << ", block_size=" << file->block_size << "}";
   }
 }
 
 namespace sls::utils {
-void dumpEnv(char **envp) {
+void dump_env(char **envp) {
   for (auto i = 0; envp[i]; i++) {
     std::cerr << "dump_env: " << envp[i] << std::endl;
   }
 }
 
-bool touchFile(const char *path) {
+bool touch_file(const char *path) {
   if (!std::filesystem::exists(path)) {
     auto fp = std::fopen(path, "w+");
     if (fp == nullptr) {
-      LOG(ERROR) << "touchFile: " << path << " failed: " << strerror(errno);
+      LOG(ERROR) << "touch_file: " << path << " failed: " << strerror(errno);
       return false;
     }
     std::fclose(fp);
@@ -49,11 +49,11 @@ bool touchFile(const char *path) {
   return true;
 }
 
-std::size_t readFromFile(const char *path, void *data, std::int64_t offset,
-                         std::size_t n) {
+std::size_t read_from_file(const char *path, void *data, std::int64_t offset,
+                           std::size_t n) {
   FILE *fp = fopen(path, "r");
   if (fp == nullptr) {
-    LOG(ERROR) << "readFromFile: failed to open file: path=" << path
+    LOG(ERROR) << "read_from_file: failed to open file: path=" << path
                << " error=" << strerror(errno);
     return 0;
   }
@@ -62,15 +62,15 @@ std::size_t readFromFile(const char *path, void *data, std::int64_t offset,
   std::size_t m = std::fread(data, 1, n, fp);
   std::fclose(fp);
   if (n != m) {
-    LOG(ERROR) << "readFromFile: read bytes unexpected: " << path
+    LOG(ERROR) << "read_from_file: read bytes unexpected: " << path
                << " expected=" << n << " actual=" << m << std::endl;
   }
 
   return m;
 }
 
-std::size_t writeToFile(const char *path, const void *data, std::int64_t offset,
-                        std::size_t n) {
+std::size_t write_to_file(const char *path, const void *data,
+                          std::int64_t offset, std::size_t n) {
   std::FILE *fp = std::fopen(path, "r+");
   if (fp == nullptr) {
     if (errno == ENOENT) {
@@ -79,7 +79,7 @@ std::size_t writeToFile(const char *path, const void *data, std::int64_t offset,
         goto write;
       }
     }
-    LOG(ERROR) << "writeToFile: failed to open file: path=" << path
+    LOG(ERROR) << "write_to_file: failed to open file: path=" << path
                << " error=" << strerror(errno) << std::endl;
     return 0;
   }
@@ -90,7 +90,7 @@ write:
   std::fclose(fp);
 
   if (n != m) {
-    LOG(ERROR) << "writeToFile: write bytes unexpected: " << path
+    LOG(ERROR) << "write_to_file: write bytes unexpected: " << path
                << " expected=" << n << " actual=" << m << std::endl;
   }
 
